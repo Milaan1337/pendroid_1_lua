@@ -32,11 +32,16 @@ menu_table = {
                 x = 0,
                 y = 0,
             },
+        },
+        background = {
+            backgroundimg = love.graphics.newImage("files/back.jpg"),
         }
     }
 }
 ---Menü draw funkciója - a main.lua(draw) funkciója átirányítja az éppen aktív képernyő screenjére, ugyanez igaz a többi esemény-kezelő funkcióra is.
 function menu_draw()
+    menu_table.window_w, menu_table.window_h = love.graphics.getDimensions()
+    love.graphics.draw(menu_table.assets.background.backgroundimg, 0, 0, 0, menu_table.window_w / menu_table.assets.background.backgroundimg:getWidth(), menu_table.window_h / menu_table.assets.background.backgroundimg:getHeight())
     --#region Menü gombok
     local y_index = 0
     for i,v in pairs(menu_table.assets.images) do
