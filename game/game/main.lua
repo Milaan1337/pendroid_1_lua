@@ -29,6 +29,7 @@ function love.load()
                 name = "Főmenü", -- title név(androidon nem kell)
                 draw = menu_draw, -- rajz funkció
                 click = menu_click, -- click funkció
+                update = nil,
                 --lehet bővíteni az események szerint
             },
             settings = {
@@ -36,12 +37,14 @@ function love.load()
                 name = "Beállítások",
                 draw = settings_draw,
                 click = nil,
+                update = nil,
             },
             credits = {
                 canvas = love.graphics.newCanvas(),
                 name = "Készítők",
                 draw = credits_draw,
                 click = nil,
+                update = nil,
             }
         }
     }
@@ -86,6 +89,13 @@ function love.draw()
         main.currentScreen.screen.draw()
         love.graphics.setCanvas()
         love.graphics.draw(main.currentScreen.canvas)
+    end
+end
+---Ez a funkció minden képkockába lefut, azonban rajzolni itt nem lehet. Hasznos értékek állítására
+---@param dt delta_time delta idő a program futása óta
+function love.update(dt)
+    if main.currentScreen.screen ~= nil and main.currentScreen.screen.update ~= nil then
+        main.currentScreen.screen.update(dt)
     end
 end
 ---Ez a funkció kezeli az egér és érintőképernyős eseményeket.
