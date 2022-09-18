@@ -10,7 +10,7 @@ credits_table = {
             },
         },
         fonts = {
-            font = love.graphics.newFont("files/Mermaid1001.ttf", 30);
+            font = love.graphics.newFont("files/vinquerg.otf", 30);
         },
         images = {
             background = love.graphics.newImage("files/foggy.png");
