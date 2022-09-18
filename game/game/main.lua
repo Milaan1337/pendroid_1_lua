@@ -4,6 +4,7 @@ Ez a main indítója. Ez fut le.
 
 require "menu" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fájlok közötti struktúrát használni
 require "settings" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fájlok közötti struktúrát használni
+require "credits"
 ---Ez a funkció fut le először(static void)
 function love.load()
     --#region Main tábla felépítése
@@ -33,12 +34,18 @@ function love.load()
                 canvas = love.graphics.newCanvas(),
                 name = "Beállítások",
                 draw = settings_draw,
-                click = menu_click,
+                click = nil,
+            },
+            credits = {
+                canvas = love.graphics.newCanvas(),
+                name = "Készítők",
+                draw = credits_draw,
+                click = nil,
             }
         }
     }
     --
-    love.window.setFullscreen(true,"desktop") 
+    --love.window.setFullscreen(true,"desktop") 
     main_setCanvas(main.screens.menu)
 end
 ---Ez a funkció kezeli a képernyőváltásokat

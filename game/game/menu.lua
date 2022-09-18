@@ -26,6 +26,12 @@ menu_table = {
                 x = 0,
                 y = 0,
             },
+            [4] = {
+                name = "credits",
+                img = love.graphics.newImage("files/credits.png"),
+                x = 0,
+                y = 0,
+            },
         }
     }
 }
@@ -43,7 +49,6 @@ function menu_draw()
     end
     --#endregion
 end
-
 function menu_click(x,y,button)
     --menü gombok
     for i,v in ipairs(menu_table.assets.images) do
@@ -79,5 +84,7 @@ function menu_buttons_click(button)
         love.event.quit()
     elseif button == "settings" then
         main_setCanvas(main.screens.settings)
+    elseif button == "credits" then
+        main_setCanvas(main.screens.credits)
     end
 end
