@@ -115,6 +115,8 @@ function menu_buttons_click(button)
         main_setCanvas(main.screens.settings)
     elseif button == "credits" then
         main_setCanvas(main.screens.credits)
+    elseif button == "play" then
+        main_setCanvas(main.screens.game)
     end
 end
 ---Ez a funkció frissíti a musicObjectet.

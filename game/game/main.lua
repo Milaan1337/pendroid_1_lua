@@ -6,6 +6,7 @@ require "menu" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fá
 require "settings" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fájlok közötti struktúrát használni
 require "credits"
 require "debug"
+require "game"
 ---Ez a funkció fut le először(static void)
 function love.load()
     --#region Main tábla felépítése
@@ -44,6 +45,13 @@ function love.load()
                 name = "Készítők",
                 draw = credits_draw,
                 click = credits_click,
+                update = nil,
+            },
+            game = {
+                canvas = love.graphics.newCanvas(),
+                name = "Játék",
+                draw = game_draw,
+                click = nil,
                 update = nil,
             }
         }
