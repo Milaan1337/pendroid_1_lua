@@ -5,6 +5,7 @@ Ez a main indítója. Ez fut le.
 require "menu" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fájlok közötti struktúrát használni
 require "settings" -- Ezzel importáljuk be más fájlok tartalmát, így tudunk fájlok közötti struktúrát használni
 require "credits"
+require "debug"
 ---Ez a funkció fut le először(static void)
 function love.load()
     --#region Main tábla felépítése
