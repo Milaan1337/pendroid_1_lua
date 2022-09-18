@@ -43,7 +43,7 @@ function love.load()
                 canvas = love.graphics.newCanvas(),
                 name = "Készítők",
                 draw = credits_draw,
-                click = nil,
+                click = credits_click,
                 update = nil,
             }
         }

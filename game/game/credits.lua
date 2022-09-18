@@ -14,6 +14,11 @@ credits_table = {
         },
         images = {
             background = love.graphics.newImage("files/foggy.png");
+            backbutton = {
+                backbutton = love.graphics.newImage("files/backbutton.png");
+                x = 0;
+                y = 0;
+            }
         }
     },
 }
@@ -28,6 +33,7 @@ end
 function credits_draw()
     --#region Base Textek
     love.graphics.draw(credits_table.assets.images.background, 0, 0, 0, credits_table.window_w / credits_table.assets.images.background:getWidth(), credits_table.window_h / credits_table.assets.images.background:getHeight())
+    love.graphics.draw(credits_table.assets.images.backbutton.backbutton, 0, 0)
     love.graphics.draw(credits_table.assets.texts.keszitok, credits_table.window_w / 2 - credits_table.assets.texts.keszitok:getWidth() / 2, 50);
     --#endregion
     --#region Credit_members
@@ -37,4 +43,9 @@ function credits_draw()
         y_index = y_index + 50        
     end
     --#endregion
+end
+function credits_click(x, y, button)
+    if isInBox(x, y, credits_table.assets.images.backbutton.x, credits_table.assets.images.backbutton.y, credits_table.assets.images.backbutton.backbutton:getWidth(), credits_table.assets.images.backbutton.backbutton:getHeight()) then
+        main_setCanvas(main.screens.menu)
+    end
 end
