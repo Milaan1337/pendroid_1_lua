@@ -35,6 +35,17 @@ menu_table = {
         },
         background = {
             backgroundimg = love.graphics.newImage("files/back.jpg"),
+        },
+        musicObject = {
+            sound = nil,
+            images = {
+                img_on = nil,
+                img_off = nil,
+                active_image = nil,
+            },
+            playing = nil,
+            x = 0,
+            y = 0,
         }
     }
 }
@@ -53,6 +64,11 @@ function menu_draw()
         y_index = y_index + h + 15
     end
     --#endregion
+    --#region Music object
+    if type(menu_table.assets.musicObject.images.active_image) ~="nil" then
+        love.graphics.draw(menu_table.assets.musicObject.images.active_image,menu_table.assets.musicObject.x,menu_table.assets.musicObject.y,0,0.2,0.2)
+    end
+    --#endregion
 end
 function menu_click(x,y,button)
     --menü gombok
@@ -63,6 +79,14 @@ function menu_click(x,y,button)
         end
     end
     --
+    --#region Music
+    if type(menu_table.assets.musicObject.images.active_image) ~= "nil" then
+        local w,h = menu_table.assets.musicObject.images.active_image:getDimensions()
+        if isInBox(x,y,menu_table.assets.musicObject.x,menu_table.assets.musicObject.y,w,h) then
+            menu_refreshMusicObject("resume")
+        end        
+    end
+    --#endregion
 end
 
 
@@ -91,5 +115,34 @@ function menu_buttons_click(button)
         main_setCanvas(main.screens.settings)
     elseif button == "credits" then
         main_setCanvas(main.screens.credits)
+    end
+end
+
+function menu_refreshMusicObject(state)
+    if state == nil then
+        --#region first setup
+        menu_table.assets.musicObject.images.img_on = love.graphics.newImage("files/music_on.png")
+        menu_table.assets.musicObject.images.img_off = love.graphics.newImage("files/music_off.png")
+        menu_table.assets.musicObject.images.active_image = menu_table.assets.musicObject.images.img_on 
+        menu_table.assets.musicObject.playing = true
+        menu_table.assets.musicObject.sound = love.audio.newSource("files/music.mp3","static")
+        love.audio.play(menu_table.assets.musicObject.sound)
+        menu_table.assets.musicObject.sound:setLooping(true)
+        --#endregion
+        --#region music positioning
+        local w_w,w_h = love.graphics.getDimensions()
+        menu_table.assets.musicObject.x,menu_table.assets.musicObject.y = w_w -  (menu_table.assets.musicObject.images.active_image:getWidth()*0.2),w_h - (menu_table.assets.musicObject.images.active_image:getHeight()*0.1)
+        --#endregion
+    else
+        if menu_table.assets.musicObject.playing then
+            --pause
+            menu_table.assets.musicObject.images.active_image = menu_table.assets.musicObject.images.img_off
+            menu_table.assets.musicObject.playing = false
+            menu_table.assets.musicObject.sound:pause()
+        else
+            menu_table.assets.musicObject.images.active_image = menu_table.assets.musicObject.images.img_on 
+            menu_table.assets.musicObject.playing = true
+            menu_table.assets.musicObject.sound:play()
+        end
     end
 end
