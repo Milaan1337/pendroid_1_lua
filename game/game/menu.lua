@@ -83,7 +83,7 @@ function menu_click(x,y,button)
     if type(menu_table.assets.musicObject.images.active_image) ~= "nil" then
         local w,h = menu_table.assets.musicObject.images.active_image:getDimensions()
         if isInBox(x,y,menu_table.assets.musicObject.x,menu_table.assets.musicObject.y,w,h) then
-            menu_refreshMusicObject("resume")
+            menu_refreshMusicObject()
         end        
     end
     --#endregion
@@ -117,9 +117,9 @@ function menu_buttons_click(button)
         main_setCanvas(main.screens.credits)
     end
 end
-
-function menu_refreshMusicObject(state)
-    if state == nil then
+---Ez a funkció frissíti a musicObjectet.
+function menu_refreshMusicObject()
+    if menu_table.assets.musicObject.images.active_image == nil then
         --#region first setup
         menu_table.assets.musicObject.images.img_on = love.graphics.newImage("files/music_on.png")
         menu_table.assets.musicObject.images.img_off = love.graphics.newImage("files/music_off.png")

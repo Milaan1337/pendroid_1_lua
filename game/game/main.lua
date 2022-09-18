@@ -51,7 +51,7 @@ function love.load()
     --
     --love.window.setFullscreen(true,"desktop") 
     main_setCanvas(main.screens.menu)
-    menu_refreshMusicObject(nil) -- létrehozzuk a zenei objektet
+    menu_refreshMusicObject() -- létrehozzuk a zenei objektet
 end
 ---Ez a funkció kezeli a képernyőváltásokat
 ---@param screen screen
