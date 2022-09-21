@@ -17,7 +17,7 @@ game_table.assets.windows_w, game_table.assets.windows_h = love.graphics.getDime
 function game_draw()
     love.graphics.draw(game_table.assets.images.background, 0, 0, 0, game_table.assets.windows_w / game_table.assets.images.background:getWidth(), game_table.assets.windows_h / game_table.assets.images.background:getHeight());
     love.graphics.draw(game_table.assets.images.backbutton.backbutton)
-    love.graphics.draw(game_table.assets.images.character, game_table.assets.windows_w /2, game_table.assets.windows_h / 2, 0)
+    love.graphics.draw(game_table.assets.images.character, game_table.assets.windows_w /2, game_table.assets.windows_h / 2, 0, 0.3, 0.3)
 
 end
 function game_click(x, y, button)

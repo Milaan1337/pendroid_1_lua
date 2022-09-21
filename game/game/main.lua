@@ -51,7 +51,7 @@ function love.load()
                 canvas = love.graphics.newCanvas(),
                 name = "Játék",
                 draw = game_draw,
-                click = nil,
+                click = game_click,
                 update = nil,
             }
         }

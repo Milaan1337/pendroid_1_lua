@@ -128,7 +128,7 @@ function menu_refreshMusicObject()
         menu_table.assets.musicObject.images.active_image = menu_table.assets.musicObject.images.img_on 
         menu_table.assets.musicObject.playing = true
         menu_table.assets.musicObject.sound = love.audio.newSource("files/music.mp3","static")
-        love.audio.play(menu_table.assets.musicObject.sound)
+        --love.audio.play(menu_table.assets.musicObject.sound)
         menu_table.assets.musicObject.sound:setLooping(true)
         --#endregion
         --#region music positioning
