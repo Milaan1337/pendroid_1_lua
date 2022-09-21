@@ -52,7 +52,7 @@ function love.load()
                 name = "Játék",
                 draw = game_draw,
                 click = game_click,
-                update = nil,
+                update = game_update,
             }
         }
     }
@@ -101,6 +101,15 @@ function love.draw()
         love.graphics.draw(main.currentScreen.canvas)
     end
 end
+
+function love.update(dt)
+    if main.currentScreen.screen ~= nil then
+        if main.currentScreen.screen.update ~= nil then
+            main.currentScreen.screen.update(dt);
+        end
+    end
+end
+
 ---Ez a funkció minden képkockába lefut, azonban rajzolni itt nem lehet. Hasznos értékek állítására
 ---@param dt delta_time delta idő a program futása óta
 function love.update(dt)
