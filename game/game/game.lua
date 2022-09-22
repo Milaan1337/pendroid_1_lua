@@ -31,9 +31,22 @@ function game_draw()
 
 end
 
+
 function game_update(dt)
-    game_table.assets.images.enemy.x = game_table.assets.images.character.x - game_table.assets.images.enemy.x - 1;
-    print("kaki");
+    if love.keyboard.isDown("w") then
+        game_table.assets.images.character.y =  game_table.assets.images.character.y - 10;
+    end
+    if love.keyboard.isDown("s") then
+        game_table.assets.images.character.y =  game_table.assets.images.character.y + 10;
+    end
+    if love.keyboard.isDown("d") then
+        game_table.assets.images.character.x =  game_table.assets.images.character.x + 10;
+    end
+    if love.keyboard.isDown("a") then
+        game_table.assets.images.character.x =  game_table.assets.images.character.x - 10;
+    end
+    game_table.assets.images.enemy.x = game_table.assets.images.character.x + game_table.assets.images.character.x;
+    game_table.assets.images.enemy.y = game_table.assets.images.character.y + game_table.assets.images.character.y * dt;
 end
 
 function game_click(x, y, button)
