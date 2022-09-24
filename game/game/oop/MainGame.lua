@@ -1,6 +1,6 @@
 require "FW.FW_GameManager"
-game = GameManager:extend()
+MainGame = GameManager:extend()
 
-function game:new()
+function MainGame:new()
     self.super.new(self)
 end

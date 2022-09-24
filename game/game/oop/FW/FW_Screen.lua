@@ -3,16 +3,21 @@ Screen = Object:extend()
 ---@param game GameManager
 function Screen:new(game)
     require "FW.FW_AssetManager"
+    self.game = game
     self.assetManager = AssetManager()
     self.assetsLoaded = false
     self.actors = {}
     self.screen = love.graphics.newCanvas()
-    game:AddScreen(self,true)
+    game:AddScreen(self)
 end
 ---Ez a funkció visszaadja a Screen típust.
 ---@return Screen Screen
 function Screen:getType()
     return self
+end
+
+function Screen:getGame()
+    return self.game
 end
 ---Ez a funkció minden képkockába lefut.
 ---@param dt delta_time
@@ -29,7 +34,6 @@ end
 function Screen:mousepressed(x,y,btn,istouch,presses)
     for i,v in pairs(self.actors) do
         if isInBox(x,y,v.object.x,v.object.y,v.object.pw,v.object.ph) then
-            print(i .. ": boxban")
             if (v.object.onClick ~= nil) then
                 v.object:onClick(istouch,presses)
             end
@@ -59,9 +63,12 @@ end
 ---@param rot number
 ---@param img number
 ---@return actor ImageActor
-function Screen:addImageActor(x,y,w,h,rot,img)
+function Screen:addImageActor(ImageActor)
     require "FW.FW_ImageActor"
-    local actor = ImageActor(x,y,w,h,rot,img)
+    local actor = ImageActor
     table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type ="image"})
-    return actor
+end
+
+function Screen:onStart()
+
 end

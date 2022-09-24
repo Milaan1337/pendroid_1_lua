@@ -5,7 +5,8 @@ Actor = Object:extend() -- Új objektúm
 ---@param w number
 ---@param h number
 ---@param rot number
-function Actor:new(x,y,w,h,rot)
+function Actor:new(screen,x,y,w,h,rot)
+    self.screen = screen
     self.x = x
     self.y = y
     self.w = w
@@ -16,6 +17,10 @@ end
 ---@return Actor_type
 function Actor:getType()
     return Actor
+end
+
+function Actor:getScreen()
+    return self.screen
 end
 ---Ez a funkció visszaadja az Actor pozícióját
 ---@return x number
@@ -54,7 +59,6 @@ end
 ---Ez a funkció lefut minden egyes képkockába
 ---@param dt number
 function Actor:update(dt)
-    self.x = self.x + 0.1
 end
 
 function Actor:onClick(istouch,presses)

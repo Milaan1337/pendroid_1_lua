@@ -7,7 +7,9 @@ end
 
 function GameManager:update(dt)
     --Main update, mindenhol lefut
-    self.currentScreen:update(dt)
+    if (self.currentScreen ~= nil and self.currentScreen.update ~= nil) then
+        self.currentScreen:update(dt)        
+    end
 end
 ---Ez a funkció visszaadja a GameManager típust.
 ---@return GameManager type
@@ -27,9 +29,14 @@ end
 ---Ez a funkció hozzáad egy képernyőt, a GameManager-hez.
 ---@param screen_object Screen
 ---@param show bool
-function GameManager:AddScreen(screen_object,show)
+function GameManager:AddScreen(screen_object)
+    if #self.screens == 0 then
+        show = true
+    else
+        show = false
+    end
     table.insert(self.screens,{screen = screen_object.screen,id = #self.screens})
-    if (show) then
+    if (show)  then
         GameManager:SetScreen(screen_object)
     end
 end
@@ -37,4 +44,5 @@ end
 ---@param screen Screen
 function GameManager:SetScreen(screen)
     self.currentScreen = screen
+    self.currentScreen:onStart()
 end
