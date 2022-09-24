@@ -54,6 +54,9 @@ end
 ---Ez a funkció lefut minden egyes képkockába
 ---@param dt number
 function Actor:update(dt)
-    print("actor")
     self.x = self.x + 0.1
+end
+
+function Actor:onClick(istouch,presses)
+    print("szar")
 end

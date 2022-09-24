@@ -4,8 +4,6 @@ function love.load()
     maingame = game()
     require "MenuScreen"
     menuScreen = MenuScreen(maingame)
-    menuScreen.assetManager:Add(menuScreen.assetManager.assetType.img,"assets.ball.jpg","assets/ball.jpg")
-    menuScreen.assetManager:LoadAssets(menuScreen)
     labda = menuScreen:addImageActor(0,0,100,100,0,"assets/ball.jpg")
     labda = menuScreen:addImageActor(105,0,100,100,0,"assets/ball.jpg")
     labda = menuScreen:addImageActor(210,0,100,100,0,"assets/ball.jpg")
@@ -23,4 +21,10 @@ end
 
 function love.update(dt)
     maingame:update(dt)
+end
+
+function love.mousepressed(x,y,btn,istouch,presses)
+    if (maingame.currentScreen.mousepressed ~= nil) then
+        maingame.currentScreen:mousepressed(x,y,btn,istouch,presses)
+    end
 end

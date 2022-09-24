@@ -17,7 +17,6 @@ end
 ---Ez a funkció minden képkockába lefut.
 ---@param dt delta_time
 function Screen:update(dt)
-    print("screen")
     for i,v in pairs(self.actors) do
         if (v.object.update ~= nil) then
             v.object:update(dt)
@@ -26,6 +25,31 @@ function Screen:update(dt)
 end
 ---Ez a funkció rajzolja ki a képernyőre a dolgokat.
 function Screen:draw()
+end
+function Screen:mousepressed(x,y,btn,istouch,presses)
+    for i,v in pairs(self.actors) do
+        if isInBox(x,y,v.object.x,v.object.y,v.object.pw,v.object.ph) then
+            print(i .. ": boxban")
+            if (v.object.onClick ~= nil) then
+                v.object:onClick(istouch,presses)
+            end
+        end
+    end
+end
+---@param cx cursor_x egér x
+---@param cy cursor_y egér y
+---@param x box_x box x
+---@param y box_y box y
+---@param w box_w box szélessége
+---@param h box_h box magassága
+---@return bool isinbox benne van-e
+function isInBox(cx,cy,x,y,w,h)
+    if cx >= x and cx<=x+w then
+        if cy>=y and cy<= y+h then
+            return true
+        end 
+    end
+    return false
 end
 ---Ez a funkció hozza létre az ImageActor-t
 ---@param x number
@@ -38,6 +62,6 @@ end
 function Screen:addImageActor(x,y,w,h,rot,img)
     require "FW.FW_ImageActor"
     local actor = ImageActor(x,y,w,h,rot,img)
-    table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors})
+    table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type ="image"})
     return actor
 end
