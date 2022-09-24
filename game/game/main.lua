@@ -9,6 +9,7 @@ require "debug"
 require "game"
 ---Ez a funkció fut le először(static void)
 function love.load()
+    print("teszt")
     --#region Main tábla felépítése
     main = {
         --A jelenlegi képernyőt elmentjük a táblába
