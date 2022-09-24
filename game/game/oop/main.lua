@@ -13,10 +13,14 @@ end
 
 function love.draw()
     if (maingame.currentScreen.draw ~= nil and maingame.currentScreen.assetsLoaded) then
-        love.graphics.clear()
         love.graphics.setCanvas(maingame.currentScreen.screen)
+        love.graphics.clear()
         maingame.currentScreen:draw()
         love.graphics.setCanvas()
         love.graphics.draw(maingame.currentScreen.screen)
     end
+end
+
+function love.update(dt)
+    maingame:update(dt)
 end

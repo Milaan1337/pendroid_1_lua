@@ -8,6 +8,9 @@
 --
 
 
+-- A classic leegyszerűsíti az OOP-t luá-ban, úgyhogy ezt ne töröld ki!!!
+
+
 local Object = {}
 Object.__index = Object
 
