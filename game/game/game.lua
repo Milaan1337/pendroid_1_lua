@@ -49,7 +49,15 @@ function game_update(dt)
     game_table.assets.images.enemy.y = game_table.assets.images.character.y + game_table.assets.images.character.y * dt;
 end
 
+function points_between(p1, p2, points)
+    
+    x_spacing = (p2[1] - p1[1]) / (points + 1)
+    y_spacing = (p2[2] - p1[2]) / (points + 1)
+
+    return {{p1[0] + i * x_spacing}, {p1[1] +  i * y_spacing}} 
+end
 function game_click(x, y, button)
+    print(points_between({0,0},{100,200},5))
     if isInBox(x, y, game_table.assets.images.backbutton.x, game_table.assets.images.backbutton.y, game_table.assets.images.backbutton.backbutton:getWidth(), game_table.assets.images.backbutton.backbutton:getHeight()) then
         main_setCanvas(main.screens.menu)
     end
