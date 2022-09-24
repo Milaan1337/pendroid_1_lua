@@ -9,7 +9,6 @@ function StartButton:onClick()
     local screen = self:getScreen()
     local game = screen:getGame()
     require "Game.GameScreen"
-    print("katt")
     gameScreen = GameScreen(game,false)
     game:SetScreen(gameScreen,true)
 end

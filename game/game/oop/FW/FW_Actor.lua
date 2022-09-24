@@ -62,5 +62,4 @@ function Actor:update(dt)
 end
 
 function Actor:onClick(istouch,presses)
-    print("szar")
 end
