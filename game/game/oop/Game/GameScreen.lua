@@ -75,15 +75,37 @@ function GameScreen:update(dt, key)
     love.graphics.rectangle("fill", self.character.x, self.character.x - 19, self.character.hp, 8)
     love.graphics.setColor(255,255,255)
     ]]--
+
 end
 
 
 
 function GameScreen:onStart()
+    w, h = love.graphics.getDimensions()
     require "Game.GameActor"
     require "Game.Actors.EnemyActor"
+    require "Game.Actors.BeatButton"
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addImageActor(self.enemyactor)
     self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
     self:addImageActor(self.character)
+    self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
+    self:addImageActor(self.beatbutton)
+    x1 = self.character.x
+    x2 = self.enemyactor.x
+    y1 = self.character.y
+    y2 = self.enemyactor.y
+    w1 = self.character.pw
+    h1 = self.character.ph
+    h2 = self.enemyactor.ph
+    ew = self.enemyactor.pw
+
+    --még ez csak probaslkozas pls nem torolni
+    --[[ 
+    self.beatbutton.onClick = function()
+    end
+    if (self.enemyactor.x > self.character.x - (self.enemyactor + 50))then
+        self.enemyactor.hp = self.enemyactor.hp - 10;
+        print( self.enemyactor.hp)
+    end]]--
 end

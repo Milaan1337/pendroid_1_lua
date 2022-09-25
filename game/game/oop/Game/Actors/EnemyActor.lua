@@ -4,6 +4,7 @@ EnemyActor = ImageActor:extend()
 function EnemyActor:new(screen,x,y,w,h,rot,img)
     EnemyActor.super.new(self,screen,x,y,w,h,rot,img)
     self.speed = 0
+    self.hp = 100
 end
 
 function EnemyActor:follow(character,speed)
