@@ -29,8 +29,11 @@ function MenuScreen:onStart()
     self:addImageActor(self.startbutton)
     self.creditsbutton = CreditsButton(self, w / 2 - 75,h / 2 - 25, 150, 50, 0, "assets/credits.png","")
     self:addImageActor(self.creditsbutton)
-    self.exitbutton = ExitButton(self, w / 2,h / 2 + 50, 150, 50, 0, "assets/exit.png","")
+    self.exitbutton = ExitButton(self, w / 2 - 75,h / 2 + 50, 150, 50, 0, "assets/exit.png","")
     self:addImageActor(self.exitbutton)
+    self.exitbutton.onClick = function()
+        love.event.quit()
+    end
     --Buttons--
     require "FW.FW_Button"
 end
