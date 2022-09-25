@@ -18,33 +18,31 @@ function GameScreen:draw()
         love.graphics.draw(v.actor,v.object.x,v.object.y,v.object.rotation,v.object.w,v.object.h)        
     end
 end
-x = 0
-y = 0
-hp = 100
 
 function GameScreen:update(dt)
     if love.keyboard.isDown("w") then
-        y =  y - 10;
+        self.character.y =  self.character.y - 10;
     end
     if love.keyboard.isDown("s") then
-        y =  y + 10;
+        self.character.y =  self.character.y + 10;
     end
     if love.keyboard.isDown("d") then
-        x =  x + 10;
+        self.character.x =  self.character.x + 10;
     end
     if love.keyboard.isDown("a") then
-        x =  x - 10;
+        self.character.x =  self.character.x - 10;
     end
-    self.startbutton = StartButton(self,x,y,300,120,0,"assets/ball.jpg")
-    self:addImageActor(self.startbutton)
-    love.graphics.rectangle("line", x - 1, y - 20, 302, 10)
-    love.graphics.setColor(255,0,0,255)
-    love.graphics.rectangle("fill", x, y - 19, hp, 8)
-    love.graphics.setColor(255,255,255)
+    self.enemyactor.x = self.enemyactor.x + ((self.character.x - self.enemyactor.x) * x)
+    self.enemyactor.y = self.enemyactor.y + ((self.character.y - self.enemyactor.y) * x)
+
 end
 
 function GameScreen:onStart()
     require "Menu.MenuStartButton"
-    self.startbutton = StartButton(self,x,y,550,120,0,"assets/ball.jpg")
-    self:addImageActor(self.startbutton)
+    require "Game.Actors.EnemyActor"
+    self.character = StartButton(self,0, 0, 75,100, 0,"assets/character.png")
+    self:addImageActor(self.character)
+    self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
+    self:addImageActor(self.enemyactor)
+    x = 0.01
 end

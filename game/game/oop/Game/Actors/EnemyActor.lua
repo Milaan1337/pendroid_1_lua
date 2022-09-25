@@ -1,6 +1,6 @@
 require "FW.FW_ImageActor"
-GameActor = ImageActor:extend()
+EnemyActor = ImageActor:extend()
 
-function GameActor:new(screen,x,y,w,h,rot,img)
+function EnemyActor:new(screen,x,y,w,h,rot,img)
     self.super.new(ImageActor,screen,x,y,w,h,rot,img)
 end
