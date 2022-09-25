@@ -63,9 +63,8 @@ end
 ---@param rot number
 ---@param img number
 ---@return actor ImageActor
-function Screen:addImageActor(ImageActor)
+function Screen:addImageActor(actor)
     require "FW.FW_ImageActor"
-    local actor = ImageActor
     table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type ="image"})
 end
 

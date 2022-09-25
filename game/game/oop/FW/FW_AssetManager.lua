@@ -20,16 +20,19 @@ end
 ---@param type self.assetType
 ---@param asset str
 ---@param path str
-function AssetManager:Add(type,asset, path)
+function AssetManager:Add(asset)
+    local type = asset.type
+    local path = asset.path
+    local love2d_path = asset.love2d
     if (type ~= nil and asset ~= nil) then
-        table.insert(self.assets,{type = type,asset = asset, path = path})
+        table.insert(self.assets,{type = type,asset = path, path = love2d_path})
     end
 end
 ---Ez a funkció betölti az asseteket ha végeztünk.
 ---@param screen Screen
 function AssetManager:LoadAssets(screen)
     for i,v in pairs(self.assets) do
-        love.filesystem.load(v.asset)
+        love.filesystem.load(v.path)
     end
     screen.assetsLoaded = true
 end

@@ -9,19 +9,21 @@ function MenuScreen:new(game)
         type = self.assetManager.assetType.img,
     }
     for i,v in pairs(assets) do
-        self.assetManager:Add(v.type,v.path,v.love2d)        
+        self.assetManager:Add(v)        
     end
     self.assetManager:LoadAssets(self)
 end
 
 function MenuScreen:draw()
     for i,v in pairs(self.actors) do
-        love.graphics.draw(v.actor,v.object.x,v.object.y,v.object.rotation,v.object.w,v.object.h)        
+        v.object:render()       
     end
 end
 
 function MenuScreen:onStart()
-    require "Menu.MenuStartButton"
-    self.startbutton = StartButton(self,0,0,150,120,0,"assets/ball.jpg")
+    require "Menu.Actors.StartButton"
+    self.startbutton = StartButton(self,0,0,150,120,0,"assets/ball.jpg","Start")
     self:addImageActor(self.startbutton)
+    --Buttons--
+    require "FW.FW_Button"
 end

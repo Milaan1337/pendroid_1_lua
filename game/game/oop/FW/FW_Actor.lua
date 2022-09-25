@@ -63,3 +63,7 @@ end
 
 function Actor:onClick(istouch,presses)
 end
+
+function Actor:render()
+    
+end

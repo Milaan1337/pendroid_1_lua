@@ -8,8 +8,9 @@ ImageActor = Actor:extend()
 ---@param rot number
 ---@param img string
 function ImageActor:new(screen,x,y,w,h,rot,img)
-    self.super.new(self,screen,x,y,w,h,rot)
-    self.actor = love.graphics.newImage(img)
+    ImageActor.super.new(self,screen,x,y,w,h,rot)
+    self.img = img
+    self.actor = love.graphics.newImage(self.img)
     self.original_w,self.original_h = self.actor:getWidth(),self.actor:getHeight() 
     self.w = self.w / self.original_w
     self.h  = self.h / self.original_h
@@ -18,4 +19,9 @@ end
 
 function ImageActor:setSize(w,h)
     self.w,self.h = w/self.original_w,h/self.original_h
+    self.pw, self.ph = w,h
+end
+
+function ImageActor:render()
+    love.graphics.draw(self.actor,self.x,self.y,self.rotation,self.w,self.h)
 end

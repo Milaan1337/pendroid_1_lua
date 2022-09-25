@@ -8,17 +8,17 @@
 --
 
 
--- A classic leegyszerűsíti az OOP-t luá-ban, úgyhogy ezt ne töröld ki!!!
+-- A classic leegyszerűsíti az OOP-t lua-ban, úgyhogy ezt ne töröld ki!!!
 
 
 local Object = {}
 Object.__index = Object
 
-
+--- Létrehoz egy új objektúmot
 function Object:new()
 end
 
-
+--- Leszármaztatja egy bizonyos objektúmból
 function Object:extend()
   local cls = {}
   for k, v in pairs(self) do

@@ -6,16 +6,29 @@ Rectangle = Rectangle:extend()
 function GameScreen:new(game)
     self.super.new(self,game)
     local assets = {
+        {
+            love2d = 'assets.character.png',
+            path = "assets/character.png",
+            type = self.assetManager.assetType.img
+        },
+        {
+            love2d = "assets.enemy.png",
+            path = "assets/enemy.png",
+            type = self.assetManager.assetType.img
+        }
     }
     for i,v in pairs(assets) do
-        self.assetManager:Add(v.type,v.path,v.love2d)        
+        self.assetManager:Add(v)        
     end
+    c1 = os.clock()
     self.assetManager:LoadAssets(self)
+    c2 = os.clock()
+    print("Időkülönbség:" .. c2-c1)
 end
 
 function GameScreen:draw()
     for i,v in pairs(self.actors) do
-        love.graphics.draw(v.actor,v.object.x,v.object.y,v.object.rotation,v.object.w,v.object.h)        
+        v.object:render()
     end
 end
 
@@ -32,17 +45,15 @@ function GameScreen:update(dt)
     if love.keyboard.isDown("a") then
         self.character.x =  self.character.x - 10;
     end
-    self.enemyactor.x = self.enemyactor.x + ((self.character.x - self.enemyactor.x) * x)
-    self.enemyactor.y = self.enemyactor.y + ((self.character.y - self.enemyactor.y) * x)
+    self.enemyactor:follow(self.character,0.01)
 
 end
 
 function GameScreen:onStart()
-    require "Menu.MenuStartButton"
+    require "Game.GameActor"
     require "Game.Actors.EnemyActor"
-    self.character = StartButton(self,0, 0, 75,100, 0,"assets/character.png")
-    self:addImageActor(self.character)
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addImageActor(self.enemyactor)
-    x = 0.01
+    self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
+    self:addImageActor(self.character)
 end
