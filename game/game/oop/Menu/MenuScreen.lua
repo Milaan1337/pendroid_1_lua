@@ -22,8 +22,15 @@ end
 
 function MenuScreen:onStart()
     require "Menu.Actors.StartButton"
-    self.startbutton = StartButton(self,0,0,150,120,0,"assets/ball.jpg","Start")
+    require "Menu.Actors.CreditsButton"
+    require "Menu.Actors.ExitButton"
+    w, h = love.graphics.getDimensions()
+    self.startbutton = StartButton(self, w / 2 - 75,h / 2 - 150, 150, 50, 0, "assets/play.png","")
     self:addImageActor(self.startbutton)
+    self.creditsbutton = CreditsButton(self, w / 2 - 75,h / 2 - 25, 150, 50, 0, "assets/credits.png","")
+    self:addImageActor(self.creditsbutton)
+    self.exitbutton = ExitButton(self, w / 2,h / 2 + 50, 150, 50, 0, "assets/exit.png","")
+    self:addImageActor(self.exitbutton)
     --Buttons--
     require "FW.FW_Button"
 end
