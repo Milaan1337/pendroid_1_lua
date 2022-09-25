@@ -1,4 +1,5 @@
 require "FW.FW_ImageActor"
+---@class GameActor : ImageActor
 GameActor = ImageActor:extend()
 
 function GameActor:new(screen,x,y,w,h,rot,img)

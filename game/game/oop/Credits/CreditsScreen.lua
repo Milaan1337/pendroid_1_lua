@@ -1,5 +1,5 @@
----@class CreditsScreen : Screen
 require "FW.FW_Screen"
+---@class CreditsScreen : Screen
 CreditsScreen = Screen:extend()
 
 function CreditsScreen

@@ -1,4 +1,5 @@
 require "FW.FW_ImageActor"
+---@class CreditsButton : ImageActor
 CreditsButton = ImageActor:extend()
 
 function CreditsButton:new(screen,x,y,w,h,rot,img)

@@ -91,3 +91,4 @@ function GameScreen:onStart()
         print( self.enemyactor.hp)
     end]]--
 end
+

@@ -1,4 +1,5 @@
 require "FW.FW_Button"
+---@class StartButton : ImageActor
 StartButton = Button:extend()
 
 function StartButton:new(screen,x,y,w,h,rot,img,text,tw,th,font,color)

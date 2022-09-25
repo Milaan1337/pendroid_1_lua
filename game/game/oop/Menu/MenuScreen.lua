@@ -1,4 +1,5 @@
 require "FW.FW_Screen"
+---@class MenuScreen : Screen
 MenuScreen = Screen:extend()
 
 function MenuScreen:new(game)

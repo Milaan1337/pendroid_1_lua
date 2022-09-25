@@ -1,4 +1,5 @@
 require "FW.FW_ImageActor"
+---@class EnemyActor : ImageActor
 EnemyActor = ImageActor:extend()
 
 function EnemyActor:new(screen,x,y,w,h,rot,img)
