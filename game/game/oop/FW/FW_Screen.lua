@@ -10,6 +10,7 @@ Screen = Object:extend()
 function Screen:new(game)
     require "FW.FW_AssetManager"
     self.game = game
+    ---@type AssetManager
     self.assetManager = AssetManager()
     self.assetsLoaded = false
     self.actors = {}
@@ -26,7 +27,7 @@ function Screen:getGame()
     return self.game
 end
 ---Ez a funkció minden képkockába lefut.
----@param dt delta_time
+---@param dt number
 function Screen:update(dt)
     for i,v in pairs(self.actors) do
         if (v.object.update ~= nil) then
@@ -46,13 +47,13 @@ function Screen:mousepressed(x,y,btn,istouch,presses)
         end
     end
 end
----@param cx cursor_x egér x
----@param cy cursor_y egér y
----@param x box_x box x
----@param y box_y box y
----@param w box_w box szélessége
----@param h box_h box magassága
----@return bool isinbox benne van-e
+---@param cx number egér x
+---@param cy number egér y
+---@param x number box x
+---@param y number box y
+---@param w number box szélessége
+---@param h number box magassága
+---@return boolean isinbox benne van-e
 function isInBox(cx,cy,x,y,w,h)
     if cx >= x and cx<=x+w then
         if cy>=y and cy<= y+h then
