@@ -78,6 +78,8 @@ function GameScreen:onStart()
     require "Game.Actors.BeatButton"
     require "FW.FW_Rectangle"
     require "FW.FW_Circle"
+    require "FW.FW_Text"
+    require "FW.FW_Font"
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
@@ -86,6 +88,7 @@ function GameScreen:onStart()
     self:addActor(self.beatbutton,"img")
     --SHAPEK--
     ---@type Shape
+    --[[
     self.rectangle = Rectangle(self,"fill",0,0,150,150,0,0,5)
     self:addActor(self.rectangle,"shape")
     self.rectangle2 = Rectangle(self,"line",500,500,150,150,0,0,50)
@@ -93,6 +96,12 @@ function GameScreen:onStart()
 
     self.c = Circle(self,"fill",350,0,50,50)
     self:addActor(self.c,"shape")
+    ]]
+    --TEXT--
+    ---@type Text
+    self.f1 = Font("assets/font2.otf",64)
+    self.t1 = Text(self,150,0,1,1,0,"Teszt",0.2,0.2,self.f1.font,{1,0,0})
+    self:addActor(self.t1,"text")
     --még ez csak probaslkozas pls nem torolni
     --[[ 
     self.beatbutton.onClick = function()
@@ -101,5 +110,6 @@ function GameScreen:onStart()
         self.enemyactor.hp = self.enemyactor.hp - 10;
         print( self.enemyactor.hp)
     end]]--
+    --TODO kattintás szövegre
 end
 
