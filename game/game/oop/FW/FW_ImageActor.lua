@@ -8,7 +8,6 @@ require "FW.FW_Actor"
 ---@field h number
 ---@field pw number
 ---@field ph number
----@field
 ImageActor = Actor:extend()
 ---Ez a funkció létrehoz egy ImageActor-t.
 ---@param x number
@@ -35,3 +34,4 @@ end
 function ImageActor:render()
     love.graphics.draw(self.actor,self.x,self.y,self.rotation,self.w,self.h)
 end
+

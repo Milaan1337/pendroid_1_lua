@@ -110,6 +110,6 @@ function GameScreen:onStart()
         self.enemyactor.hp = self.enemyactor.hp - 10;
         print( self.enemyactor.hp)
     end]]--
-    --TODO kattintás szövegre
+    --TODO kattintás szövegre és width-ek ellenőrzése és actor remove
 end
 
