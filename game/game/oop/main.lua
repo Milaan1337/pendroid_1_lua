@@ -1,9 +1,13 @@
+
 function love.load()
     Object = require "FW.classic"
     require "MainGame"
+    ---@type GameManager
     maingame = MainGame()
     require "Menu.MenuScreen"
+    ---@type Screen
     menuscreen = MenuScreen(maingame)
+
         
 end
 
@@ -18,7 +22,7 @@ function love.draw()
         end
     end
 end
-
+---
 function love.update(dt)
     maingame:update(dt)
 end

@@ -1,10 +1,11 @@
+---@class Actor
+---@field screen Screen
+---@field x number
+---@field y number
+---@field w number
+---@field h number
+---@field rotation number
 Actor = Object:extend() -- Új objektúm
----Ez a funkció hozza létre az actorokat -> Actor
----@param x number
----@param y number
----@param w number
----@param h number
----@param rot number
 function Actor:new(screen,x,y,w,h,rot)
     self.screen = screen
     self.x = x

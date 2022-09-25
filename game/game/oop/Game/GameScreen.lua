@@ -1,7 +1,5 @@
 require "FW.FW_Screen"
 GameScreen = Screen:extend()
-require "FW.FW_Rectangle"
-Rectangle = Rectangle:extend()
 
 function GameScreen:new(game)
     self.super.new(self,game)
@@ -20,14 +18,11 @@ function GameScreen:new(game)
     for i,v in pairs(assets) do
         self.assetManager:Add(v)        
     end
-    c1 = os.clock()
-    self.assetManager:LoadAssets(self)
-    c2 = os.clock()
-    print("Időkülönbség:" .. c2-c1)
 end
 
 function GameScreen:draw()
     for i,v in pairs(self.actors) do
+        print("xd")
         v.object:render()
     end
 end

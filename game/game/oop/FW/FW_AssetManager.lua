@@ -1,3 +1,6 @@
+---@class AssetManager
+---@field assetType table
+---@field assets table
 AssetManager = Object:extend()
 ---Ez a funkció létrehozza az asset manager-t.
 function AssetManager:new()

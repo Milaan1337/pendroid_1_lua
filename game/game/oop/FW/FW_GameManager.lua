@@ -1,5 +1,8 @@
+---@class GameManager
+---@field screens table
+---@field currentScreen Screen
 GameManager = Object:extend()
----Ez a funkció létrehozza a GameManager-t.
+
 function GameManager:new()
     self.screens = {}
     self.currentScreen = nil

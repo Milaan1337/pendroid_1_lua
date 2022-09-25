@@ -1,3 +1,9 @@
+---@class Screen
+---@field game GameManager
+---@field assetManager AssetManager
+---@field assetsLoaded boolean
+---@field actors table
+---@field screen Screen
 Screen = Object:extend()
 ---Ez a funkció létrehoz egy új Screen-t.
 ---@param game GameManager
@@ -62,7 +68,6 @@ end
 ---@param h number
 ---@param rot number
 ---@param img number
----@return actor ImageActor
 function Screen:addImageActor(actor)
     require "FW.FW_ImageActor"
     table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type ="image"})

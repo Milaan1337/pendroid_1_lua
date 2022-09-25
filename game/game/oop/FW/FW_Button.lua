@@ -1,4 +1,23 @@
 require "FW.FW_ImageActor"
+---@class Button : Actor
+---@field color table
+---@field tw number
+---@field th number
+---@field size number
+---@field font
+---@field text table
+---@field screen Screen
+---@field actor Actor
+---@field h number
+---@field img string
+---@field original_h number
+---@field original_w number
+---@field ph number
+---@field pw number
+---@field th number
+---@field w number
+---@field x number
+---@field y number
 Button = ImageActor:extend()
 
 function Button:new(screen,x,y,w,h,rot,img,text,tw,th,font,color)
