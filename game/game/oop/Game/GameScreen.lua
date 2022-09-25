@@ -88,11 +88,14 @@ function GameScreen:onStart()
     self:addActor(self.beatbutton,"img")
     --SHAPEK--
     ---@type Shape
+    love.graphics.setColor(255,0,0,255)
+    self.rectangle = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 2,10,0,0,5)
     --[[
     self.rectangle = Rectangle(self,"fill",0,0,150,150,0,0,5)
     self:addActor(self.rectangle,"shape")
-    self.rectangle2 = Rectangle(self,"line",500,500,150,150,0,0,50)
+    self.rectangle2 = Rectangle(self,"fill",self.character.x,self.character.y -19,self.character.hp,8,0,0,50)
     self:addActor(self.rectangle2,"shape")
+    love.graphics.setColor(255,255,255)
 
     self.c = Circle(self,"fill",350,0,50,50)
     self:addActor(self.c,"shape")
