@@ -76,12 +76,23 @@ function GameScreen:onStart()
     require "Game.GameActor"
     require "Game.Actors.EnemyActor"
     require "Game.Actors.BeatButton"
+    require "FW.FW_Rectangle"
+    require "FW.FW_Circle"
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
-    self:addImageActor(self.enemyactor)
+    self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
-    self:addImageActor(self.character)
+    self:addActor(self.character,"img")
     self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
-    self:addImageActor(self.beatbutton)
+    self:addActor(self.beatbutton,"img")
+    --SHAPEK--
+    ---@type Shape
+    self.rectangle = Rectangle(self,"fill",0,0,150,150,0,0,5)
+    self:addActor(self.rectangle,"shape")
+    self.rectangle2 = Rectangle(self,"line",500,500,150,150,0,0,50)
+    self:addActor(self.rectangle2,"shape")
+
+    self.c = Circle(self,"fill",350,0,50,50)
+    self:addActor(self.c,"shape")
     --még ez csak probaslkozas pls nem torolni
     --[[ 
     self.beatbutton.onClick = function()

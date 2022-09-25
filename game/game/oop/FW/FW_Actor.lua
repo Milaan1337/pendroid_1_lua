@@ -1,4 +1,4 @@
----@class Actor
+---@class Actor : Object
 ---@field screen Screen
 ---@field x number
 ---@field y number

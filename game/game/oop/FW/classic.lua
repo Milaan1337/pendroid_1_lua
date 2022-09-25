@@ -10,7 +10,7 @@
 
 -- A classic leegyszerűsíti az OOP-t lua-ban, úgyhogy ezt ne töröld ki!!!
 
-
+---@class Object
 local Object = {}
 Object.__index = Object
 

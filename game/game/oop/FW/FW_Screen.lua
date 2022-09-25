@@ -69,9 +69,9 @@ end
 ---@param h number
 ---@param rot number
 ---@param img number
-function Screen:addImageActor(actor)
+function Screen:addActor(actor, type)
     require "FW.FW_ImageActor"
-    table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type ="image"})
+    table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type =type})
 end
 
 function Screen:onStart()

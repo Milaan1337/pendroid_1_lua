@@ -26,5 +26,5 @@ function CreditsScreen:onStart()
     require "Credits.CreditActors.BackButton"
     w, h = love.graphics.getDimensions()
     self.backbutton = BackButton(self, w / 2 - 75,h / 2 - 150, 150, 50, 0, "assets/backbutton.png","")
-    self:addImageActor(self.backbutton)
+    self:addActor(self.backbutton,"img")
 end

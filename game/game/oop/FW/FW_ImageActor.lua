@@ -1,4 +1,14 @@
 require "FW.FW_Actor"
+---@class ImageActor : Actor
+---@field img string
+---@field actor userdata
+---@field original_w number
+---@field original_h number
+---@field w number
+---@field h number
+---@field pw number
+---@field ph number
+---@field
 ImageActor = Actor:extend()
 ---Ez a funkció létrehoz egy ImageActor-t.
 ---@param x number
