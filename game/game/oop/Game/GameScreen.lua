@@ -75,6 +75,10 @@ function GameScreen:onStart()
     self:addActor(self.character,"img")
     self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
     self:addActor(self.beatbutton,"img")
+    self.beatbutton.onClick = function()
+        self.test = Circle(self, "fill", self.character.x + (self.character.pw / 2), self.character.y + (self.character.ph / 2), {1,1,1}, 0, 200)
+        self:addActor(self.test, "shape")
+    end
     --------------------------------------------------------------------------------
     self.hpbar = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 1,10, { 1,1,1 },0,0,5)
     self:addActor(self.hpbar, "shape")
@@ -84,16 +88,6 @@ function GameScreen:onStart()
     ---@type Shape
     love.graphics.setColor(255,0,0,255)
     self.rectangle = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 2,10,0,0,5)
-    --[[
-    self.rectangle = Rectangle(self,"fill",0,0,150,150,0,0,5)
-    self:addActor(self.rectangle,"shape")
-    self.rectangle2 = Rectangle(self,"fill",self.character.x,self.character.y -19,self.character.hp,8,0,0,50)
-    self:addActor(self.rectangle2,"shape")
-    love.graphics.setColor(255,255,255)
-
-    self.c = Circle(self,"fill",350,0,50,50)
-    self:addActor(self.c,"shape")
-    ]]
     --TEXT--
     ---@type Text
     self.f1 = Font("assets/font2.otf",64)
