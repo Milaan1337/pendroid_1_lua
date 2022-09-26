@@ -9,8 +9,9 @@ ArrayImage = Actor:extend()
 function ArrayImage:new(screen, x, y, w, h, images ,rot)
     Actor.super.new(self,screen, x, y, w, h, rot)
     self.images = images
+    self.imagesAmount = #self.images
     ---@type ImageActor
-    self.imageActors = {}
+    self.actor = love.graphics.newArrayImage(self.images)
     require "FW.FW_ImageActor"
     for i,v in pairs(self.images) do
         local actor = ImageActor(screen,x,y,w,h,rot,v)
@@ -19,7 +20,7 @@ function ArrayImage:new(screen, x, y, w, h, images ,rot)
 end
 
 function ArrayImage:render()
-    for i,v in pairs(self.imageActors) do
-        v:render()
+    for i = 1,self.imagesAmount do
+        love.graphics.drawLayer(self.actor,i,self.x,self.y,self.rotation,self.w,self.h)
     end
 end

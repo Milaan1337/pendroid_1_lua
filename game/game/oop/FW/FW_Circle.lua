@@ -16,6 +16,6 @@ end
 
 function Circle:render()
     love.graphics.setColor(self.color)
-    love.graphics.circle(self.mode,self.x,self.radius,self.segments)
+    love.graphics.circle(self.mode,self.x,self.y,self.radius,self.segments)
     love.graphics.setColor({1,1,1})
 end

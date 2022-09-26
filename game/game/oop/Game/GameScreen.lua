@@ -93,6 +93,9 @@ function GameScreen:onStart()
     self.f1 = Font("assets/font2.otf",64)
     self.t1 = Text(self,150,0,0,"Teszt",0.2,0.2,self.f1.font,64,{1,0,0})
     self:addActor(self.t1,"text")
+
+    ---self.arrayimg = ArrayImage(self,0,0,200,200,{"assets/character.png","assets/enemy.png"},0)
+    ---self:addActor(self.arrayimg,"img")
     --még ez csak probaslkozas pls nem torolni
     --[[ 
     self.beatbutton.onClick = function()
