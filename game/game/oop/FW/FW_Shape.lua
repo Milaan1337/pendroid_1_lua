@@ -6,13 +6,14 @@
 ---@class Shape : Actor
 Shape = Actor:extend()
 
-function Shape:new(screen,mode,x,y,w,h,rx,ry,segments)
+function Shape:new(screen,mode,x,y,w,h,color,rx,ry,segments)
     Shape.super.new(self,screen,x,y,w,h,rx)
     self.w = w or 50
     self.h = h or 50
     self.rx = rx or 0
     self.rx = rx or 0
     self.ry = ry or 0
+    self.color = color or {1,1,1}
     self.segments = segments or 0
     self.mode = mode or "fill"
 end
