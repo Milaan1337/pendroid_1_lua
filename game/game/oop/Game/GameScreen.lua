@@ -44,32 +44,20 @@ function GameScreen:update(dt, key)
     end
     self.enemyactor:follow(self.character,0.01)
 
-        --ez egyszeruen a hitboxhoz kell, hogy minden lehetoseget kiprbbaljunk
+    self.hpbar.x = self.character.x - 1
+    self.hpbar.y = self.character.y - 20
+    self.hp.x = self.character.x
+    self.hp.y = self.character.y - 19
+    self.hp.w = self.character.hp
+
     if (self.character:isCollidedWith(self.enemyactor)) then
         if (self.character.hp > 0) then
             self.character.hp = self.character.hp - 1
             print(self.character.hp)
         end
     end
-        
-        --utkozes kezeles, minden lehetoseg figyelembe veve
-
-    --ezt kell megoldani
-    --[[
-    --itt fut le az, hogy lassuk a hitboxokat
-    love.graphics.rectangle("line", self.character.x, self.character.x, charw, charh)
-    love.graphics.rectangle("line", self.enemyactor.x, self.enemyactor.y, enew, eneh)
-    --hp bar
-    love.graphics.rectangle("line", self.character.x - 1, self.character.x - 20, self.character.character:getWidth() + 2, 10)
-    love.graphics.setColor(255,0,0,255)
-    love.graphics.rectangle("fill", self.character.x, self.character.x - 19, self.character.hp, 8)
-    love.graphics.setColor(255,255,255)
-    ]]--
 
 end
-
-
-
 
 function GameScreen:onStart()
     w, h = love.graphics.getDimensions()
@@ -83,10 +71,15 @@ function GameScreen:onStart()
     require "FW.FW_ArrayImage"
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addActor(self.enemyactor,"img")
-    self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
+    self.character = GameActor(self,0, 0, 100,100, 0,"assets/character.png")
     self:addActor(self.character,"img")
     self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
     self:addActor(self.beatbutton,"img")
+    --------------------------------------------------------------------------------
+    self.hpbar = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 1,10, { 1,1,1 },0,0,5)
+    self:addActor(self.hpbar, "shape")
+    self.hp = Rectangle(self, "fill", self.character.x, self.character.y - 19, self.character.hp, 8, {1, 0, 0},0,0,5)
+    self:addActor(self.hp, "shape")
     --SHAPEK--
     ---@type Shape
     love.graphics.setColor(255,0,0,255)
