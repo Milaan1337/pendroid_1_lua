@@ -39,4 +39,5 @@ function Button:render()
     love.graphics.setColor(self.color[1],self.color[2],self.color[3])
     love.graphics.draw(self.text.text,self.x + (self.pw/2) - (self.text.text:getWidth() * self.tw)/2,self.y + (self.ph/2) - (self.size * self.th)/2,self.rotation,self.tw,self.th)
     love.graphics.setColor(1,1,1,1)
+    self:drawRectangle()
 end

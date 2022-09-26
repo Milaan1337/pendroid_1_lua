@@ -33,5 +33,14 @@ end
 
 function ImageActor:render()
     love.graphics.draw(self.actor,self.x,self.y,self.rotation,self.w,self.h)
+    self:drawRectangle()
+end
+
+function ImageActor:drawRectangle()
+    if (love.keyboard.isDown("f12")) then
+        love.graphics.setColor({1,0,0})
+        love.graphics.rectangle( "line", self.x, self.y, self.pw, self.ph, 0, 0, 0 )
+        love.graphics.setColor({1,1,1})
+    end
 end
 

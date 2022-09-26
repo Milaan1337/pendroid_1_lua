@@ -6,8 +6,8 @@
 ---@class Text : Actor
 Text = Actor:extend()
 
-function Text:new(screen, x, y, w, h, rot,text,tw,th,font,font_size, color)
-    Text.super.new(self,screen, x, y, w, h, rot)
+function Text:new(screen, x, y, rot,text,tw,th,font,font_size, color)
+    Text.super.new(self,screen, x, y, tw,th, rot)
     self.content = text or ""
     self.tw = tw or 0.5
     self.th = th or 0.5
@@ -15,10 +15,13 @@ function Text:new(screen, x, y, w, h, rot,text,tw,th,font,font_size, color)
     self.font_size = font_size or 32
     self.color = color or {1,1,1}
     self.text = love.graphics.newText(self.font, self.content)
+    self.pw = self.text:getWidth() * self.tw
+    self.ph = self.text:getHeight() * self.th
 end
 
 function Text:render()
     love.graphics.setColor(self.color)
     love.graphics.draw(self.text,self.x,self.y,self.rotation,self.w,self.h,self.tw,self.th)
     love.graphics.setColor({1,1,1})
+    self:drawRectangle(self.pw,self.ph)
 end

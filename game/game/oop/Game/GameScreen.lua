@@ -103,7 +103,7 @@ function GameScreen:onStart()
     --TEXT--
     ---@type Text
     self.f1 = Font("assets/font2.otf",64)
-    self.t1 = Text(self,150,0,1,1,0,"Teszt",0.2,0.2,self.f1.font,{1,0,0})
+    self.t1 = Text(self,150,0,0,"Teszt",0.2,0.2,self.f1.font,64,{1,0,0})
     self:addActor(self.t1,"text")
     --még ez csak probaslkozas pls nem torolni
     --[[ 
@@ -113,6 +113,6 @@ function GameScreen:onStart()
         self.enemyactor.hp = self.enemyactor.hp - 10;
         print( self.enemyactor.hp)
     end]]--
-    --TODO kattintás szövegre és width-ek ellenőrzése és actor remove
+    --TODO actor remove
 end
 

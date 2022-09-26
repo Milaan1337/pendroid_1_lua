@@ -66,7 +66,13 @@ function Actor:onClick(istouch,presses)
 end
 
 function Actor:render()
-    
+end
+function Actor:drawRectangle(pw,ph)
+    if (love.keyboard.isDown("f12")) then
+        love.graphics.setColor({1,0,0})
+        love.graphics.rectangle( "line", self.x, self.y, pw, ph, 0, 0, 0 )
+        love.graphics.setColor({1,1,1})
+    end
 end
 ---@field actor Actor
 function Actor:isCollidedWith(actor)
