@@ -80,6 +80,7 @@ function GameScreen:onStart()
     require "FW.FW_Circle"
     require "FW.FW_Text"
     require "FW.FW_Font"
+    require "FW.FW_ArrayImage"
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 75,100, 0,"assets/character.png")
@@ -113,5 +114,6 @@ function GameScreen:onStart()
         self.enemyactor.hp = self.enemyactor.hp - 10;
         print( self.enemyactor.hp)
     end]]--
+    --todo ArrayImage
 end
 
