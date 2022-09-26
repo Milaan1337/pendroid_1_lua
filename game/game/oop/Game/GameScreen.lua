@@ -113,6 +113,5 @@ function GameScreen:onStart()
         self.enemyactor.hp = self.enemyactor.hp - 10;
         print( self.enemyactor.hp)
     end]]--
-    --TODO actor remove
 end
 

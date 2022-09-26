@@ -73,6 +73,19 @@ function Screen:addActor(actor, type)
     require "FW.FW_ImageActor"
     table.insert(self.actors,{object = actor,actor = actor.actor,id = #self.actors, type =type})
 end
+---@param actor Actor
+function Screen:removeActor(actor)
+    local index = self:findActor()
+    table.remove(self.actors,index)
+end
+---@param actor Actor
+function Screen:findActor(actor)
+    for i,v in pairs(self.actors) do
+        if (v.object == actor) then
+            return i
+        end
+    end
+end
 
 function Screen:onStart()
 
