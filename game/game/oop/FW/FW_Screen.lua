@@ -38,11 +38,14 @@ end
 ---Ez a funkció rajzolja ki a képernyőre a dolgokat.
 function Screen:draw()
 end
+
 function Screen:mousepressed(x,y,btn,istouch,presses)
     for i,v in pairs(self.actors) do
-        if isInBox(x,y,v.object.x,v.object.y,v.object.pw,v.object.ph) then
-            if (v.object.onClick ~= nil) then
-                v.object:onClick(istouch,presses)
+        if (v.object.pw ~= nil and v.object.ph ~= nil) then
+            if isInBox(x,y,v.object.x,v.object.y,v.object.pw,v.object.ph) then
+                if (v.object.onClick ~= nil) then
+                    v.object:onClick(istouch,presses)
+                end
             end
         end
     end
