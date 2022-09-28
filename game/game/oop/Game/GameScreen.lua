@@ -56,8 +56,19 @@ function GameScreen:update(dt, key)
             print(self.character.hp)
         end
     end
+    if (self.enemyactor.hp == 0)then
+        self:removeActor(self.enemyactor)
+    end
     if (self.beatradius ~= nil) then
         if (self.beatradius:isCollidedWith(self.enemyactor)) then
+            if (self.enemyactor.hp >= 0 and utkozott == false)then
+                self.enemyactor.hp = self.enemyactor.hp - 300
+                utkozott = true
+                self:removeActor(self.beatradius)
+                utkozott = false
+                self.beatradius = nil
+                print(self.enemyactor.hp)
+            end
         end
     end
 
@@ -73,6 +84,7 @@ function GameScreen:onStart()
     require "FW.FW_Text"
     require "FW.FW_Font"
     require "FW.FW_ArrayImage"
+    utkozott = false
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 100,100, 0,"assets/character.png")

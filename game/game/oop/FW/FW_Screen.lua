@@ -78,9 +78,10 @@ function Screen:addActor(actor, type)
 end
 ---@param actor Actor
 function Screen:removeActor(actor)
-    local index = self:findActor()
+    local index = self:findActor(actor)
     if (index ~= nil) then
         table.remove(self.actors,index)
+        ---@type Actor
     end
 end
 ---@param actor Actor
