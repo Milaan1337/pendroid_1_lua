@@ -3,7 +3,7 @@ require "FW.FW_Screen"
 GameScreen = Screen:extend()
 
 function GameScreen:new(game)
-    self.super.new(self,game)
+    GameScreen.super.new(self,game)
     local assets = {
         {
             love2d = 'assets.character.png',
@@ -56,6 +56,10 @@ function GameScreen:update(dt, key)
             print(self.character.hp)
         end
     end
+    if (self.beatradius ~= nil) then
+        if (self.beatradius:isCollidedWith(self.enemyactor)) then
+        end
+    end
 
 end
 
@@ -76,8 +80,8 @@ function GameScreen:onStart()
     self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
     self:addActor(self.beatbutton,"img")
     self.beatbutton.onClick = function()
-        self.test = Circle(self, "fill", self.character.x + (self.character.pw / 2), self.character.y + (self.character.ph / 2), {1,1,1}, 0, 200)
-        self:addActor(self.test, "shape")
+        self.beatradius = Circle(self, "fill", self.character.x + (self.character.pw / 2), self.character.y + (self.character.ph / 2), {1,1,1}, 200, 100)
+        self:addActor(self.beatradius, "shape")
     end
     --------------------------------------------------------------------------------
     self.hpbar = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 1,10, { 1,1,1 },0,0,5)
@@ -89,11 +93,9 @@ function GameScreen:onStart()
     love.graphics.setColor(255,0,0,255)
     self.rectangle = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 2,10,0,0,5)
     --TEXT--
-    ---@type Text
     self.f1 = Font("assets/font2.otf",64)
-    self.t1 = Text(self,150,0,0,"Teszt",0.2,0.2,self.f1.font,64,{1,0,0})
+    self.t1 = Text(self,150,0,0,"meghalt az enemy",0.2,0.2,self.f1.font,64,{1,0,0})
     self:addActor(self.t1,"text")
-
     ---self.arrayimg = ArrayImage(self,0,0,200,200,{"assets/character.png","assets/enemy.png"},0)
     ---self:addActor(self.arrayimg,"img")
     --még ez csak probaslkozas pls nem torolni
