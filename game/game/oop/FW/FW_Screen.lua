@@ -79,7 +79,9 @@ end
 ---@param actor Actor
 function Screen:removeActor(actor)
     local index = self:findActor()
-    table.remove(self.actors,index)
+    if (index ~= nil) then
+        table.remove(self.actors,index)
+    end
 end
 ---@param actor Actor
 function Screen:findActor(actor)
@@ -88,6 +90,7 @@ function Screen:findActor(actor)
             return i
         end
     end
+    return nil
 end
 
 function Screen:onStart()

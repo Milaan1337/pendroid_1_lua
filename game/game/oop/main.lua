@@ -12,7 +12,7 @@ function love.load()
 end
 
 function love.draw()
-    if maingame.currentScreen ~= nil then
+    if maingame.draw ~= nil then
         if (maingame.currentScreen.draw ~= nil and maingame.currentScreen.assetsLoaded) then
             love.graphics.setCanvas(maingame.currentScreen.screen)
             love.graphics.clear()

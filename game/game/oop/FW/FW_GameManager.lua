@@ -6,7 +6,13 @@ GameManager = Object:extend()
 function GameManager:new()
     self.screens = {}
     self.currentScreen = nil
+    self.camera = nil
 end
+---@param camera Camera
+function GameManager:setCamera(camera)
+    self.camera = camera
+end
+
 
 function GameManager:update(dt)
     --Main update, mindenhol lefut
@@ -48,4 +54,8 @@ end
 function GameManager:SetScreen(screen)
     self.currentScreen = screen
     self.currentScreen:onStart()
+end
+
+function  GameManager:draw()
+
 end
