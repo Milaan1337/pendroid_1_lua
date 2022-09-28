@@ -16,7 +16,7 @@ function Shape:new(screen,mode,x,y,w,h,color,rx,ry,segments)
     self.color = color or {1,1,1}
     self.segments = segments or 0
     self.mode = mode or "fill"
-    self.pw,self.ph = w,h
+    self.pw,self.ph = self.w, self.h
 end
 
 function Shape:render()

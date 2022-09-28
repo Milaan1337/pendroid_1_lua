@@ -25,3 +25,7 @@ function Text:render()
     love.graphics.setColor({1,1,1})
     self:drawRectangle(self.pw,self.ph)
 end
+---@param text string
+function Text:setText(text)
+    self.text:set(text)
+end
