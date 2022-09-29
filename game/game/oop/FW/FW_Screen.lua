@@ -97,3 +97,11 @@ end
 function Screen:onStart()
 
 end
+---@param actor Actor
+function Screen:inOnScreen(actor)
+    local index = self:findActor(actor)
+    if (index ~= nil) then
+        return true
+        ---@type Actor
+    end
+end

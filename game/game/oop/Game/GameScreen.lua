@@ -30,6 +30,7 @@ function GameScreen:draw()
 end
 
 function GameScreen:update(dt, key)
+    --beaalitasokban lehet majd alitani az fps szamlalot,local result = love.timer.getFPS( ),info a telefonrol: print(love.system.getPowerInfo())
     if love.keyboard.isDown("w") then
         self.character.y =  self.character.y - 10;
     end
@@ -42,7 +43,6 @@ function GameScreen:update(dt, key)
     if love.keyboard.isDown("a") then
         self.character.x =  self.character.x - 10;
     end
-    self.enemyactor:follow(self.character,0.01)
 
     self.hpbar.x = self.character.x - 1
     self.hpbar.y = self.character.y - 20
@@ -50,19 +50,26 @@ function GameScreen:update(dt, key)
     self.hp.y = self.character.y - 19
     self.hp.w = self.character.hp
 
-    if (self.character:isCollidedWith(self.enemyactor)) then
-        if (self.character.hp > 0) then
-            self.character.hp = self.character.hp - 1
-            print(self.character.hp)
+    if(self:inOnScreen(self.enemyactor))then
+        self.enemyactor:follow(self.character,0.01)
+        if (self.character:isCollidedWith(self.enemyactor)) then
+            if (self.character.hp > 0) then
+                self.character.hp = self.character.hp - 1
+                print(self.character.hp)
+            end
         end
     end
     if (self.enemyactor.hp == 0)then
         self:removeActor(self.enemyactor)
     end
+
+    time = love.timer.getTime()
+    result = love.timer.getTime() - time
+    print(result * 1000)
     if (self.beatradius ~= nil) then
         if (self.beatradius:isCollidedWith(self.enemyactor)) then
             if (self.enemyactor.hp >= 0 and utkozott == false)then
-                self.enemyactor.hp = self.enemyactor.hp - 300
+                self.enemyactor.hp = self.enemyactor.hp - 30
                 utkozott = true
                 self:removeActor(self.beatradius)
                 utkozott = false
@@ -79,12 +86,15 @@ function GameScreen:onStart()
     require "Game.GameActor"
     require "Game.Actors.EnemyActor"
     require "Game.Actors.BeatButton"
+    require "Game.Actors.BackgroundActor"
     require "FW.FW_Rectangle"
     require "FW.FW_Circle"
     require "FW.FW_Text"
     require "FW.FW_Font"
     require "FW.FW_ArrayImage"
     utkozott = false
+    self.backgroundactor = BackgroundActor(self, 0, 0, w, h, 0, "assets/grass.png")
+    self:addActor(self.backgroundactor, "img")
     self.enemyactor = EnemyActor(self,0,0,75,100,0,"assets/enemy.png")
     self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 100,100, 0,"assets/character.png")
