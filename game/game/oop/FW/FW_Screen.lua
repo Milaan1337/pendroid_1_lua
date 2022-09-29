@@ -14,6 +14,7 @@ function Screen:new(game)
     self.assetManager = AssetManager()
     self.assetsLoaded = false
     self.actors = {}
+    self.camera = nil
     self.screen = love.graphics.newCanvas()
     game:AddScreen(self)
 end
@@ -78,7 +79,7 @@ function Screen:addActor(actor, type)
 end
 ---@param actor Actor
 function Screen:removeActor(actor)
-    local index = self:findActor(actor)
+    local index = self:findActor(actor) or nil
     if (index ~= nil) then
         table.remove(self.actors,index)
         ---@type Actor
@@ -91,7 +92,6 @@ function Screen:findActor(actor)
             return i
         end
     end
-    return nil
 end
 
 function Screen:onStart()
@@ -104,4 +104,8 @@ function Screen:inOnScreen(actor)
         return true
         ---@type Actor
     end
+end
+
+function Screen:addCamera(cam)
+    self.camera = cam
 end
