@@ -55,7 +55,6 @@ function GameScreen:update(dt, key)
         if (self.character:isCollidedWith(self.enemyactor)) then
             if (self.character.hp > 0) then
                 self.character.hp = self.character.hp - 1
-                print(self.character.hp)
             end
         end
     end
@@ -65,7 +64,6 @@ function GameScreen:update(dt, key)
 
     time = love.timer.getTime()
     result = love.timer.getTime() - time
-    print(result * 1000)
     if (self.beatradius ~= nil) then
         if (self.beatradius:isCollidedWith(self.enemyactor)) then
             if (self.enemyactor.hp >= 0 and utkozott == false)then
@@ -74,10 +72,12 @@ function GameScreen:update(dt, key)
                 self:removeActor(self.beatradius)
                 utkozott = false
                 self.beatradius = nil
-                print(self.enemyactor.hp)
             end
         end
     end
+
+    --Kamera frissítése--
+    self.c:lookAt(self.character.x,self.character.y)
 
 end
 
@@ -92,6 +92,7 @@ function GameScreen:onStart()
     require "FW.FW_Text"
     require "FW.FW_Font"
     require "FW.FW_ArrayImage"
+    require "FW.FW_Camera"
     utkozott = false
     self.backgroundactor = BackgroundActor(self, 0, 0, w, h, 0, "assets/grass.png")
     self:addActor(self.backgroundactor, "img")
@@ -118,6 +119,8 @@ function GameScreen:onStart()
     self.f1 = Font("assets/font2.otf",64)
     self.t1 = Text(self,150,0,0,"meghalt az enemy",0.2,0.2,self.f1.font,64,{1,0,0})
     self:addActor(self.t1,"text")
+    self.c = Camera(self,0,0,nil,1,0,true)
+    self:addCamera(self.c)
     ---self.arrayimg = ArrayImage(self,0,0,200,200,{"assets/character.png","assets/enemy.png"},0)
     ---self:addActor(self.arrayimg,"img")
     --még ez csak probaslkozas pls nem torolni

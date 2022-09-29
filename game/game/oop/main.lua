@@ -7,6 +7,7 @@ function love.load()
     require "Menu.MenuScreen"
     ---@type Screen
     menuscreen = MenuScreen(maingame)
+    require("FW.FW_Camera")
 
         
 end
@@ -16,11 +17,15 @@ function love.draw()
         if (maingame.currentScreen.draw ~= nil and maingame.currentScreen.assetsLoaded) then
             love.graphics.setCanvas(maingame.currentScreen.screen)
             love.graphics.clear()
-            maingame.currentScreen:draw()
+            if maingame.currentScreen.camera == nil then
+                maingame.currentScreen:draw()
+            else
+                maingame.currentScreen.camera:draw()
+            end
             love.graphics.setCanvas()
             love.graphics.draw(maingame.currentScreen.screen)
+            end
         end
-    end
 end
 ---
 function love.update(dt)
