@@ -2,6 +2,8 @@ require "FW.FW_Screen"
 ---@class GameScreen : Screen
 GameScreen = Screen:extend()
 
+time = love.timer.getTime()
+
 function GameScreen:new(game)
     GameScreen.super.new(self,game)
     local assets = {
@@ -62,10 +64,12 @@ function GameScreen:update(dt, key)
     if (self.enemyactor.hp == 0)then
         self:removeActor(self.enemyactor)
     end
+    if (self.character.hp == 0)then
+        self:removeActor(self.character)
+    end
 
-    time = love.timer.getTime()
-    result = love.timer.getTime() - time
-    print(result * 1000)
+
+
     if (self.beatradius ~= nil) then
         if (self.beatradius:isCollidedWith(self.enemyactor)) then
             if (self.enemyactor.hp >= 0 and utkozott == false)then
@@ -74,14 +78,24 @@ function GameScreen:update(dt, key)
                 self:removeActor(self.beatradius)
                 utkozott = false
                 self.beatradius = nil
-                print(self.enemyactor.hp)
             end
         end
+        timer = timer + dt
+        if (timer > 2 and self:inOnScreen(self.beatradius)) then
+            self:removeActor(self.beatradius)
+            utkozott = false
+            self.beatradius = nil
+        end
+    end
+    self.beatbutton.onClick = function()
+        self.beatradius = Circle(self, "fill", self.character.x + (self.character.pw / 2), self.character.y + (self.character.ph / 2), {1,1,1}, 200, 100)
+        self:addActor(self.beatradius, "shape")
     end
 
 end
 
 function GameScreen:onStart()
+    timer = 0
     w, h = love.graphics.getDimensions()
     require "Game.GameActor"
     require "Game.Actors.EnemyActor"
@@ -99,12 +113,8 @@ function GameScreen:onStart()
     self:addActor(self.enemyactor,"img")
     self.character = GameActor(self,0, 0, 100,100, 0,"assets/character.png")
     self:addActor(self.character,"img")
-    self.beatbutton = BeatButton(self, w - 200, h - 200, 50,50, 0, "assets/ball.jpg", "")
+    self.beatbutton = BeatButton(self, w - 300, h - 300, 200,200, 0, "assets/BeatButton.png", "")
     self:addActor(self.beatbutton,"img")
-    self.beatbutton.onClick = function()
-        self.beatradius = Circle(self, "fill", self.character.x + (self.character.pw / 2), self.character.y + (self.character.ph / 2), {1,1,1}, 200, 100)
-        self:addActor(self.beatradius, "shape")
-    end
     --------------------------------------------------------------------------------
     self.hpbar = Rectangle(self,"line",self.character.x - 1,self.character.y - 20,self.character.pw + 1,10, { 1,1,1 },0,0,5)
     self:addActor(self.hpbar, "shape")
@@ -120,14 +130,6 @@ function GameScreen:onStart()
     self:addActor(self.t1,"text")
     ---self.arrayimg = ArrayImage(self,0,0,200,200,{"assets/character.png","assets/enemy.png"},0)
     ---self:addActor(self.arrayimg,"img")
-    --még ez csak probaslkozas pls nem torolni
-    --[[ 
-    self.beatbutton.onClick = function()
-    end
-    if (self.enemyactor.x > self.character.x - (self.enemyactor + 50))then
-        self.enemyactor.hp = self.enemyactor.hp - 10;
-        print( self.enemyactor.hp)
-    end]]--
     --todo ArrayImage
 end
 
